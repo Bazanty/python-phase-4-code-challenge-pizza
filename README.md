@@ -1,36 +1,26 @@
-# Phase 4 Code Challenge: Pizza Restaurants (Updated)
+# Pizza Restaurant API
+This project provides a simple API to manage restaurants, pizzas, and their many-to-many relationship using **Flask, **SQLAlchemy, and "Flask-Migrate". Users can perform various CRUD operations on restaurants, pizzas, and their associations. The API also allows adding new pizzas to restaurants, deleting restaurants, and retrieving data on both entities and their connections.
 
-In this code challenge, you'll be working with a Pizza Restaurant domain.
+## Table of contents
+1. Installation
+2. Setup
+3. Endpoints
+* GET /restaurants
+* GET /restaurants/<id>
+* DELETE /restaurants/<id>
+* GET /pizzas
+* POST /restaurant_pizzas
+4. Testing
+5. Contributing
+6. License
+7. Author
 
-In this repo:
-
-- There is a Flask application with some features built out.
-- There is a fully built React frontend application.
-- There are tests included which you can run using `pytest -x`.
-- There is a file `challenge-1-pizzas.postman_collection.json` that contains a
-  Postman collection of requests for testing each route you will implement.
-
-Depending on your preference, you can either check your API by:
-
-- Using Postman to make requests
-- Running `pytest -x` and seeing if your code passes the tests
-- Running the React application in the browser and interacting with the API via
-  the frontend
-
-You can import `challenge-1-pizzas.postman_collection.json` into Postman by
-pressing the `Import` button.
-
-![import postman](https://curriculum-content.s3.amazonaws.com/6130/phase-4-code-challenge-instructions/import_collection.png)
-
-Select `Upload Files`, navigate to this repo folder, and select
-`challenge-1-pizzas.postman_collection.json` as the file to import.
-
-## Setup
+## Installation
 
 The instructions assume you changed into the `code-challenge` folder **prior**
 to opening the code editor.
 
-To download the dependencies for the frontend and backend, run:
+To get started with this project, you’ll need to install both backend and frontend dependencies. Ensure you have pipenv and npm installed.
 
 ```console
 pipenv install
@@ -38,14 +28,16 @@ pipenv shell
 npm install --prefix client
 ```
 
-You can run your Flask API on [`localhost:5555`](http://localhost:5555) by
+## Setup
+
+1. You can run your Flask API on [`localhost:5555`](http://localhost:5555) by
 running:
 
 ```console
 python server/app.py
 ```
 
-You can run your React app on [`localhost:4000`](http://localhost:4000) by
+2. You can run your React app on [`localhost:4000`](http://localhost:4000) by
 running:
 
 ```sh
@@ -59,16 +51,12 @@ behavior of your API in a realistic setting.
 Your job is to build out the Flask API to add the functionality described in the
 deliverables below.
 
-## Core Deliverables
-
-All of the deliverables are graded for the code challenge.
-
-### Models
-
 You will implement an API for the following data model:
 
 ![domain diagram](https://curriculum-content.s3.amazonaws.com/6130/code-challenge-1/domain.png)
 
+
+3. Database setup
 The file `server/models.py` defines the model classes **without relationships**.
 Use the following commands to create the initial database `app.db`:
 
@@ -79,17 +67,7 @@ flask db migrate
 flask db upgrade head
 ```
 
-Now you can implement the relationships as shown in the ER Diagram:
-
-- A `Restaurant` has many `Pizza`s through `RestaurantPizza`
-- A `Pizza` has many `Restaurant`s through `RestaurantPizza`
-- A `RestaurantPizza` belongs to a `Restaurant` and belongs to a `Pizza`
-
-Update `server/models.py` to establish the model relationships. Since a
-`RestaurantPizza` belongs to a `Restaurant` and a `Pizza`, configure the model
-to cascade deletes.
-
-Set serialization rules to limit the recursion depth.
+4. Seed the Database
 
 Run the migrations and seed the database:
 
@@ -120,9 +98,11 @@ single field).
 NOTE: If you choose to implement a Flask-RESTful app, you need to add code to
 instantiate the `Api` class in server/app.py.
 
-#### GET /restaurants
+#### Endpoints
+Here are the Available Api endpoints
 
-Return JSON data in the format below:
+#### GET /restaurants
+fetch a list of all restaurants:
 
 ```json
 [
@@ -150,7 +130,7 @@ a single field).
 
 #### GET /restaurants/<int:id>
 
-If the `Restaurant` exists, return JSON data in the format below:
+Retrieve details of a specific `restaurant` by ID, including associated pizzas:
 
 ```json
 {
@@ -228,9 +208,7 @@ Return JSON data in the format below:
 
 #### POST /restaurant_pizzas
 
-This route should create a new `RestaurantPizza` that is associated with an
-existing `Pizza` and `Restaurant`. It should accept an object with the following
-properties in the body of the request:
+Create a new relationship between a Restaurant and a Pizza:
 
 ```json
 {
@@ -271,3 +249,18 @@ code:
   "errors": ["validation errors"]
 }
 ```
+### Testing 
+run the tests using pytest:
+```bash 
+pytest -x
+```
+Alternatively, you can manually test the API via Postman by importing the provided collection ```challenge-1-pizzas.postman_collection.json.```
+
+#### Contribution
+If you would like to contribute to this project, feel free to fork the repository, make your changes, and submit a pull request. Contributions are welcome!
+
+### Licence 
+This project is licensed under the MIT License.
+
+#### Author 
+This project is developed by **Nyakundi Brian**.
