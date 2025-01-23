@@ -1,5 +1,5 @@
 # Pizza Restaurant API
-This project provides a simple API to manage restaurants, pizzas, and their many-to-many relationship using **Flask, **SQLAlchemy, and "Flask-Migrate". Users can perform various CRUD operations on restaurants, pizzas, and their associations. The API also allows adding new pizzas to restaurants, deleting restaurants, and retrieving data on both entities and their connections.
+This project provides a simple API to manage restaurants, pizzas, and their many-to-many relationship using **Flask, **SQLAlchemy**, and **Flask-Migrate**. Users can perform various CRUD operations on restaurants, pizzas, and their associations. The API also allows adding new pizzas to restaurants, deleting restaurants, and retrieving data on both entities and their connections.
 
 ## Table of contents
 1. Installation
